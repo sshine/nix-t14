@@ -96,6 +96,10 @@
       # Both
       bindkey '^R' history-incremental-search-backward
 
+      # Compensate for modern terminals
+      export TERM=xterm-256color
+
+      # Prompt
       eval "$(starship init zsh)"
     '';
     };

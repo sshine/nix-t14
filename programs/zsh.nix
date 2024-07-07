@@ -70,8 +70,9 @@
 
     shellAliases = {
       rm = "rm -iv";
-      ls = "exa";
-      tree = "exa -lT";
+      l = "eza -l";
+      ls = "eza -l";
+      tree = "eza -lT";
       gs = "git status";
       gd = "git diff";
       gdc = "git diff --cached";

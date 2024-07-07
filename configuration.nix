@@ -6,8 +6,7 @@
  
 {
   imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+    [ ./hardware-configuration.nix
       ./direnv.nix
       ./udev.nix
       ./programs/vim.nix # editor
@@ -39,14 +38,17 @@
     displayManager.gdm.enable = true;
   };
 
-  # users.defaultUserShell = pkgs.zsh;
+  users = {
+    groups.plugdev = {};
+    defaultUserShell = pkgs.zsh;
 
-  users.groups.plugdev = {};
-  users.users.sshine = {
-    isNormalUser = true;
-    home = "/home/sshine";
-    description = "Simon Shine";
-    extraGroups = [ "wheel" "video" "plugdev" ];
+    users.sshine = {
+      isNormalUser = true;
+      home = "/home/sshine";
+      shell = pkgs.zsh;
+      description = "Simon Shine";
+      extraGroups = [ "wheel" "video" "plugdev" ];
+    };
   };
 
   security.sudo = {

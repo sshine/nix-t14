@@ -1,6 +1,7 @@
 { ... }:
 {
   services.udev = {
+    # 69-probe-rs.rules
     extraRules = ''
 # Copy this file to /etc/udev/rules.d/
 # If rules fail to reload automatically, you can refresh udev rules

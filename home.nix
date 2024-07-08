@@ -10,6 +10,31 @@
     ];
   };
 
+# TODO(sshine): Adding this causes conflict because ~/.ssh is already manually populated.
+#
+#  programs.ssh = {
+#    enable = true;
+#    matchBlocks = {
+#      zhen = {
+#        user = "sshine";
+#        hostname = "zhen.mechanicus.xyz";
+#        port = 222;
+#      };
+#      dao = {
+#        user = "sshine";
+#        hostname = "dao.mechanicus.xyz";
+#        port = 222;
+#      };
+#      github = {
+#        user = "git";
+#        hostname = "github.com";
+#        port = 22;
+#      };
+#    };
+#  };
+
+# TODO(sshine): Complete this configuration based on auto-generated starter
+#
 #  wayland.windowManager.hyprland.settings = {
 #    # Keyboard and mouse
 #    # input = {

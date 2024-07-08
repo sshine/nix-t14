@@ -12,10 +12,11 @@
       ./programs/vim.nix # editor
       ./programs/zsh.nix # shell
       # ./programs/foot.nix # terminal... doesn't work
-      ./programs/sway.nix # window manager
+      # ./programs/sway.nix # window manager
       # ./programs/git.nix
       # ./home.nix
       ./fonts.nix
+      ./programs/hyprland.nix
     ];
 
   networking.hostName = "umag";
@@ -37,6 +38,7 @@
     # desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
   };
+  # services.displayManager.defaultSession
 
   users = {
     groups.plugdev = {};
@@ -143,6 +145,11 @@
     fzf
     mtr # network diagnostic tool
     file which tree
+
+    # hyprland-specific
+    hyprland
+    waybar
+    wofi
   ];
 
 

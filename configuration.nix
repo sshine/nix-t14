@@ -150,6 +150,14 @@
     hyprland
     waybar
     wofi
+
+    vscode
+    rust-analyzer
+    just
+  ];
+
+  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
+    "vscode"
   ];
 
 

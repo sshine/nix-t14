@@ -4,6 +4,12 @@
   home.username = "sshine";
   home.homeDirectory = "/home/sshine";
 
+  programs.vscode = {
+    enable = true;
+    extensions = with pkgs.vscode-extensions; [
+    ];
+  };
+
 #  wayland.windowManager.hyprland.settings = {
 #    # Keyboard and mouse
 #    # input = {

@@ -9,14 +9,11 @@
     [ ./hardware-configuration.nix
       ./direnv.nix
       ./udev.nix
+      ./fonts.nix
       ./programs/vim.nix # editor
       ./programs/zsh.nix # shell
-      # ./programs/foot.nix # terminal... doesn't work
-      # ./programs/sway.nix # window manager
+      ./programs/hyprland.nix # window manager
       # ./programs/git.nix
-      # ./home.nix
-      ./fonts.nix
-      ./programs/hyprland.nix
     ];
 
   networking.hostName = "umag";
@@ -154,6 +151,8 @@
     vscode
     rust-analyzer
     just
+    rustc
+    cargo
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [

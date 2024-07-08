@@ -4,37 +4,83 @@
   home.username = "sshine";
   home.homeDirectory = "/home/sshine";
 
-  # set cursor size and dpi for 4k monitor
-  xresources.properties = {
-    "Xcursor.size" = 16;
-    "Xft.dpi" = 172;
+#  wayland.windowManager.hyprland.settings = {
+#    # Keyboard and mouse
+#    # input = {
+#    #   kb_layout = "dk";
+#    #  kb_variant = "";
+#      kb_model = "";
+#      kb_options = "";
+#      kb_rules = "";
+#
+#      follow_mouse = 1;
+#      sensitivity = 0;
+#
+#      touchpad = {
+#        natural_scroll = false;
+#      };
+#    };
+#
+#    "$mod" = "SUPER"; # Win-key
+#    "$terminal" = "kitty";
+#    "$fileManager" = "kitty nnn";
+#    "$menu" = "wofi --show drun";
+#
+#    bind =
+#      [
+#        # Main commands
+#        "$mod, Q, exec, $terminal" # TODO: remove
+#        "$mod, Enter, exec, $terminal"
+#        "$mod, F, exec, firefox"
+#        "$mod, Print, exec, grim"
+#        "$mod, P, exec, $menu"
+#        "$mod SHIFT, K, killactive"
+#
+#        # Windowing
+#        "$mod, T, togglegroup"
+#      ]
+#      ++ (
+#        # workspaces
+#        # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
+#        builtins.concatLists (builtins.genList (
+#            x: let
+#              ws = let
+#                c = (x + 1) / 10;
+#              in
+#                builtins.toString (x + 1 - (c * 10));
+#            in [
+#              "$mod, ${ws}, workspace, ${toString (x + 1)}"
+#              "$mod SHIFT, ${ws}, movetoworkspace, ${toString (x + 1)}"
+#            ]
+#          )
+#          10)
+#      );
+#  };
+#
+  home.pointerCursor = {
+    gtk.enable = true;
+    # x11.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 16;
   };
 
-  # Packages that should be installed to the user profile.
-  #home.packages = with pkgs; [
-  #];
-
-  # basic configuration of git, please change to your own
-  # alacritty - a cross-platform, GPU-accelerated terminal emulator
-  programs.alacritty = {
+  gtk = {
     enable = true;
-    # custom settings
-    settings = {
-      env.TERM = "xterm-256color";
-      font = {
-        size = 20;
-        draw_bold_text_with_bright_colors = true;
-      };
-      scrolling.multiplier = 5;
-      selection.save_to_clipboard = true;
+
+    theme = {
+      package = pkgs.flat-remix-gtk;
+      name = "Flat-Remix-GTK-Grey-Darkest";
     };
-  };
 
-  programs.foot = {
-    enable = true;
-    settings = {
-      term = "xterm-256color";
-      font = "monospace:size=20";
+    iconTheme = {
+      package = pkgs.gnome.adwaita-icon-theme;
+      name = "Adwaita";
+    };
+
+    font = {
+      name = "Sans";
+      size = 11;
     };
   };
 

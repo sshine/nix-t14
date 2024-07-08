@@ -27,9 +27,9 @@
   hardware.pulseaudio.enable = true;
 
   # Configure user session
+  services.displayManager.defaultSession = "hyprland";
   services.xserver = {
     enable = true;
-    displayManager.defaultSession = "hyprland";
     displayManager.gdm.enable = true;
   };
 }

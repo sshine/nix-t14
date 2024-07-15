@@ -95,6 +95,8 @@
 
       # Both
       bindkey '^R' history-incremental-search-backward
+      bindkey '^U' kill-whole-line
+      bindkey '^Y' yank
 
       # Compensate for modern terminals
       export TERM=xterm-256color

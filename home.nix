@@ -10,6 +10,177 @@
     ];
   };
 
+  programs.kitty = {
+    enable = true;
+    theme = "Batman";
+    font = {
+      name = "Meslo";
+      size = 14;
+    };
+  };
+
+  programs.fuzzel = {
+    enable = true;
+    settings = {
+      main = {
+        terminal = "kitty";
+        font = "Meslo:size=20";
+        anchor = "center";
+        horizontal-pad = 10;
+        vertical-pad = 10;
+      };
+      colors = {
+        background = "1b1d1edd";
+        text = "6e6e6eff";
+        match = "1b1d1e80"; # fg for matched substring
+        selection = "4d4f4c80"; # bg
+        selection-text = "505354ff"; # fg
+        border = "1b1d1eff";
+      };
+      border = {
+        width = 1;
+        radius = 5;
+      };
+    };
+  };
+
+  programs.waybar.settings.mainBar = {
+    position= "bottom";
+    layer= "top";
+    # output = "eDP-1"; # testing
+    height= 5;
+    margin-top= 0;
+    margin-bottom= 0;
+    margin-left= 0;
+    margin-right= 0;
+    modules-left= [
+        "custom/launcher" 
+        "hyprland/workspaces"
+    ];
+    modules-center= [
+        "clock"
+    ];
+    modules-right= [
+        "tray" 
+        "cpu"
+        "memory"
+        "disk"
+        "pulseaudio" 
+        "battery"
+        "network"
+        "custom/notification"
+    ];
+    clock= {
+        calendar = {
+          format = { today = "<span color='#b4befe'><b><u>{}</u></b></span>"; };
+        };
+        format = " {:%H:%M}";
+        tooltip= "true";
+        tooltip-format= "<big>{:%Y %B}</big>\n<tt><small>{calendar}</small></tt>";
+        format-alt= " {:%d/%m}";
+    };
+    "hyprland/workspaces"= {
+        active-only= false;
+        disable-scroll= true;
+        format = "{icon}";
+        on-click= "activate";
+        format-icons= {
+            "1"= "󰈹";
+            "2"= "";
+            "3"= "󰘙";
+            "4"= "󰙯";
+            "5"= "";
+            "6"= "";
+            urgent= "";
+            default = "";
+            sort-by-number= true;
+        };
+        persistent-workspaces = {
+            "1"= [];
+            "2"= [];
+            "3"= [];
+            "4"= [];
+            "5"= [];
+        };
+    };
+    memory= {
+        format= "󰟜 {}%";
+        format-alt= "󰟜 {used} GiB"; # 
+        interval= 2;
+    };
+    cpu= {
+        format= "  {usage}%";
+        format-alt= "  {avg_frequency} GHz";
+        interval= 2;
+    };
+    disk = {
+        # path = "/";
+        format = "󰋊 {percentage_used}%";
+        interval= 60;
+    };
+    network = {
+        format-wifi = "  {signalStrength}%";
+        format-ethernet = "󰀂 ";
+        tooltip-format = "Connected to {essid} {ifname} via {gwaddr}";
+        format-linked = "{ifname} (No IP)";
+        format-disconnected = "󰖪 ";
+    };
+    tray= {
+        icon-size= 20;
+        spacing= 8;
+    };
+    pulseaudio= {
+        format= "{icon} {volume}%";
+        format-muted= "  {volume}%";
+        format-icons= {
+            default= [" "];
+        };
+        scroll-step= 5;
+        on-click= "pamixer -t";
+    };
+    battery = {
+        format = "{icon} {capacity}%";
+        format-icons = [" " " " " " " " " "];
+        format-charging = " {capacity}%";
+        format-full = " {capacity}%";
+        format-warning = " {capacity}%";
+        interval = 5;
+        states = {
+            warning = 20;
+        };
+        format-time = "{H}h{M}m";
+        tooltip = true;
+        tooltip-format = "{time}";
+    };
+    "custom/launcher"= {
+        format= "";
+        on-click= "fuzzel";
+        # on-click-right= "wallpaper-picker";
+        tooltip= "false";
+    };
+    #"custom/notification" = {
+    #    tooltip = false;
+    #    format = "{icon} ";
+    #    format-icons = {
+    #        notification = "<span foreground='red'><sup></sup></span>   ";
+    #        none = "   ";
+    #        dnd-notification = "<span foreground='red'><sup></sup></span>   ";
+    #        dnd-none = "   ";
+    #        inhibited-notification = "<span foreground='red'><sup></sup></span>   ";
+    #        inhibited-none = "   ";
+    #        dnd-inhibited-notification = "<span foreground='red'><sup></sup></span>   ";
+    #        dnd-inhibited-none = "   ";
+    #    };
+    #    return-type = "json";
+    #    exec-if = "which swaync-client";
+    #    exec = "swaync-client -swb";
+    #    on-click = "swaync-client -t -sw";
+    #    on-click-right = "swaync-client -d -sw";
+    #    escape = true;
+    #};
+  };
+
+
 # TODO(sshine): Adding this causes conflict because ~/.ssh is already manually populated.
 #
 #  programs.ssh = {

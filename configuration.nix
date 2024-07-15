@@ -37,6 +37,9 @@
   };
   # services.displayManager.defaultSession
 
+  # Enable binfmt emulation of aarch64-linux.
+  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+
   users = {
     groups.plugdev = {};
     defaultUserShell = pkgs.zsh;
@@ -99,6 +102,7 @@
   services.libinput.enable = true;
 
   environment.variables.EDITOR = "vim";
+  environment.sessionVariables.NIXOS_OZONE_WL = "1";
 
   # List packages installed in system profile. To search, run:
   # $ nix search wget
@@ -131,6 +135,8 @@
     ipcalc  # it is a calculator for the IPv4/v6 addresses
 
 
+    discord # nonfree
+
 
     # recommended by https://nixos-and-flakes.thiscute.world/nixos-with-flakes/start-using-home-manager
     nnn # terminal file manager
@@ -144,19 +150,29 @@
     file which tree
 
     # hyprland-specific
-    hyprland
+    hyprland hyprpaper
     waybar
+    fuzzel
     wofi
+    kitty
 
-    vscode
+    vscode # nonfree
     rust-analyzer
     just
     rustc
     cargo
+    parted # gdisk sfdisk # (not found)
+    gptfdisk # contains sgdisk binary
+    nixos-generators
+    shellcheck
+
+    bottom
+    brightnessctl
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
     "vscode"
+    "discord"
   ];
 
 

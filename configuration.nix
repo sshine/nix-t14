@@ -150,7 +150,7 @@
     file which tree
 
     # hyprland-specific
-    hyprland hyprpaper
+    hyprland hyprpaper hyprshot
     waybar
     fuzzel
     wofi
@@ -168,6 +168,7 @@
 
     bottom
     brightnessctl
+    dunst
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [

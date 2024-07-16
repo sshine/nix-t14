@@ -10,6 +10,7 @@
       ./direnv.nix
       ./udev.nix
       ./fonts.nix
+      ./pinyin.nix
       ./programs/vim.nix # editor
       ./programs/zsh.nix # shell
       ./programs/hyprland.nix # window manager

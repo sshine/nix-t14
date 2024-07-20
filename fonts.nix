@@ -11,7 +11,7 @@
 
       anonymousPro
       dejavu_fonts
-      emojione
+      # emojione
       fira
       fira-code
       fira-code-symbols

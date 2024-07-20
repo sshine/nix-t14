@@ -2,18 +2,15 @@
   description = "Simon's NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-24.05";
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    home-manager.url = "github:nix-community/home-manager/release-24.05";
+    home-manager.url = "github:nix-community/home-manager";
     home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
 
-    # The `follows` keyword in inputs is used for inheritance.
-    # Here, `inputs.nixpkgs` of home-manager is kept consistent with
-    # the `inputs.nixpkgs` of the current flake,
-    # to avoid problems caused by different versions of nixpkgs.
+    # zed.url = "github:zed-industries/zed";
   };
 
   outputs = { self, nixpkgs, home-manager, rust-overlay, ... }@inputs: {

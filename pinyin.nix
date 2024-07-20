@@ -5,8 +5,8 @@
   # FIXME: Move ~/.config/hypr/hyprland.conf configuration to home-manager
 
   i18n.inputMethod = {
-    enabled = "fcitx5";
-    waylandFrontend = true;
+    enable = true;
+    type = "fcitx5";
     fcitx5.addons = with pkgs; [
       fcitx5-gtk
       fcitx5-chinese-addons

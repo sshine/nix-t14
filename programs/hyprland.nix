@@ -23,7 +23,6 @@
   };
 
   # Enable sound
-  sound.enable = true;
   hardware.pulseaudio.enable = true;
 
   # Configure user session

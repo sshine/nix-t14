@@ -9,8 +9,6 @@
 
     rust-overlay.url = "github:oxalica/rust-overlay";
     rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
-
-    # zed.url = "github:zed-industries/zed";
   };
 
   outputs = { self, nixpkgs, home-manager, rust-overlay, ... }@inputs: {
@@ -19,6 +17,7 @@
         system = "x86_64-linux";
         modules = [
           ./configuration.nix
+
           home-manager.nixosModules.home-manager
           {
             home-manager.useGlobalPkgs = true;

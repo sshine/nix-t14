@@ -138,6 +138,8 @@
 
     discord # nonfree
 
+    zed-editor # depends on flake input
+    just
 
     # recommended by https://nixos-and-flakes.thiscute.world/nixos-with-flakes/start-using-home-manager
     nnn # terminal file manager

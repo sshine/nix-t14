@@ -13,7 +13,7 @@
       ./pinyin.nix
       ./programs/vim.nix # editor
       ./programs/zsh.nix # shell
-      ./programs/hyprland.nix # window manager
+      # ./programs/hyprland.nix # window manager
       # ./programs/git.nix
     ];
 
@@ -33,10 +33,10 @@
   services.xserver = {
     enable = true;
     xkb.layout = "dk";
-    # desktopManager.gnome.enable = true;
+    desktopManager.gnome.enable = true;
     displayManager.gdm.enable = true;
   };
-  # services.displayManager.defaultSession
+  hardware.pulseaudio.enable = true;
 
   # Enable binfmt emulation of aarch64-linux.
   boot.binfmt.emulatedSystems = [ "aarch64-linux" ];

@@ -102,6 +102,9 @@
 
       # Prompt
       eval "$(starship init zsh)"
+
+      # ^R, <up>
+      eval "$(atuin init zsh --disable-up-arrow)"
     '';
     };
 }

@@ -113,7 +113,7 @@
     wget curl
     screen
     zsh
-    starship
+    starship atuin
     alacritty foot kitty
     firefox
     gitFull

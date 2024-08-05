@@ -15,6 +15,7 @@
       ./programs/zsh.nix # shell
       # ./programs/hyprland.nix # window manager
       # ./programs/git.nix
+      ./services/avahi-mdns.nix
     ];
 
   networking.hostName = "umag";

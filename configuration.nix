@@ -10,7 +10,7 @@
       ./direnv.nix
       ./udev.nix
       ./fonts.nix
-      ./pinyin.nix
+      # ./pinyin.nix
       ./programs/vim.nix # editor
       ./programs/zsh.nix # shell
       # ./programs/hyprland.nix # window manager
@@ -160,10 +160,18 @@
     kitty
 
     vscode # nonfree
-    rust-analyzer
+
     just
-    rustc
+
     cargo
+    rustc
+    rust-analyzer
+    rustfmt
+    # clippy pkg-config openssl openssl.dev # doesn't work properly, use flakes
+    gcc
+    pkg-config
+    cargo-watch
+
     parted # gdisk sfdisk # (not found)
     gptfdisk # contains sgdisk binary
     nixos-generators

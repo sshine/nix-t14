@@ -1,43 +1,14 @@
-{ ... }:
+{ pkgs, ... }:
 {
-  programs.starship = {
-    enable = true;
-    settings = {
-      add_newline = false;
 
-      # Typical: $username, $hostname, $directory, $character
-      # Special: $nix_shell, $git_*
-      format = ''$battery$username$hostname$directory$nix_shell$git_branch$git_commit$git_state$git_status$character'';
-      username = {
-        format = "[$user]($style)";
-        style_root = "red bold";
-        style_user = "green bold";
-      };
-      hostname = {
-        format = "@[$hostname]($style)";
-        style = "green bold";
-        ssh_only = false;
-        ssh_symbol = "";
-        trim_at = ".";
-      };
-      directory = {
-        format = ":[$path]($style)[$read_only]($read_only_style) ";
-        style = "";
-        home_symbol = "~";
-        read_only = " 🔒";
-        read_only_style = "red";
-        truncate_to_repo = false;
-      };
-      git_branch = {
-        format = "[$symbol$branch(:$remote_branch)]($style) ";
-        style = "green bold";
-      };
-      character = {
-        # success_symbol = "[>](bold green)";
-        # error_symbol = "[>](bold red)";
-      };
-    };
-  };
+  users.defaultUserShell = pkgs.zsh;
+
+  environment.systemPackages = with pkgs; [
+    atuin  # ^R
+    eza    # ls
+    git
+    zsh
+  ];
 
   programs.zsh = {
     enable = true;
@@ -69,19 +40,58 @@
     ];
 
     shellAliases = {
+      # Navigation
       rm = "rm -iv";
       ls = "eza -lg";
       tree = "eza -lgT";
+
+      # git
       gs = "git status";
       gd = "git diff";
       gdc = "git diff --cached";
+      gca = "git commit --amend";
       gap = "git add -p";
       gl = "git log";
       gpr = "git pull --rebase";
       gcp = "git cherry-pick";
     };
 
+    promptInit = ''
+      autoload -U promptinit
+      promptinit
+      prompt off
+
+      # Simple:
+      # PS1='[%n@%m:%~] %(!.#.$) '
+
+      # Colorful:
+      # PS1='[%F{green}%n@%m%f:%F{blue}%~%f] %(!.#.$) '
+
+      # Colorful with git branch:
+      function git_branch_name() {
+        branch=$(git symbolic-ref HEAD --short 2>/dev/null)
+        if [ ! -z "$branch" ]; then
+          echo -n " [%F{red}$branch%f]"
+        fi
+      }
+
+      # prompt='[%F{green}%n@%m%f:%F{blue}%~%f]$(git_branch_name) %(!.#.$) '
+
+      # Omit username, print hostname + '$' with red when root, otherwise green:
+      prompt='[%(!.%F{red}.%F{green})%m%f:%F{blue}%~%f]$(git_branch_name) %(!.%F{red}#%f.$) '
+
+      # See: https://zsh.sourceforge.io/Doc/Release/Options.html#Prompting
+      setopt prompt_cr
+      setopt prompt_sp
+      setopt prompt_subst
+
+      export PROMPT_EOL_MARK=""
+    '';
+
     interactiveShellInit = ''
+      # Prevent user-level "config missing" message.
+      touch $HOME/.zshrc
+
       # MacOS
       bindkey '^[[7~' beginning-of-line
       bindkey '^[[8~' end-of-line
@@ -100,11 +110,9 @@
       # Compensate for modern terminals
       export TERM=xterm-256color
 
-      # Prompt
-      eval "$(starship init zsh)"
-
-      # ^R, <up>
+      # ^R
       eval "$(atuin init zsh --disable-up-arrow)"
     '';
-    };
+  };
+
 }

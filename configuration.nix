@@ -21,7 +21,7 @@
       ./services/sshd.nix
     ];
 
-  networking.hostName = "umag";
+  networking.hostName = "t14";
   networking.domain = "mechanicus.xyz";
 
   time.timeZone = lib.mkDefault "Europe/Copenhagen";

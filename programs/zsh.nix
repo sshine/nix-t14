@@ -50,6 +50,7 @@
       gd = "git diff";
       gdc = "git diff --cached";
       gca = "git commit --amend";
+      gcv = "git commit --verbose";
       gap = "git add -p";
       gl = "git log";
       gpr = "git pull --rebase";

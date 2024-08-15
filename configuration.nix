@@ -168,6 +168,7 @@
     just
 
     cargo
+    cargo-generate
     rustc
     rust-analyzer
     rustfmt

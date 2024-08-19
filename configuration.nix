@@ -11,6 +11,7 @@
       ./udev.nix
       ./fonts.nix
       # ./pinyin.nix
+      ./programs/gnome-desktop.nix
       ./programs/vim.nix # editor
       ./programs/zsh.nix # shell
       # ./programs/hyprland.nix # window manager
@@ -34,12 +35,6 @@
 
   security.polkit.enable = true;
 
-  services.xserver = {
-    enable = true;
-    xkb.layout = "dk";
-    desktopManager.gnome.enable = true;
-    displayManager.gdm.enable = true;
-  };
   hardware.pulseaudio.enable = true;
 
   # Enable binfmt emulation of aarch64-linux.

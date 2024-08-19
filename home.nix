@@ -12,7 +12,7 @@
 
   programs.kitty = {
     enable = true;
-    theme = "Batman";
+    # theme = "Batman";
     font = {
       name = "Meslo";
       size = 14;

@@ -17,8 +17,8 @@
       ./programs/vscodium.nix # IDE
 
       ./services/avahi-mdns.nix
-      ./services/hydra.nix
       ./services/sshd.nix
+      # ./services/hydra.nix
       # ./pinyin.nix
       # ./programs/hyprland.nix # window manager
       # ./programs/git.nix

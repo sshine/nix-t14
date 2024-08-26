@@ -10,16 +10,19 @@
       ./direnv.nix
       ./udev.nix
       ./fonts.nix
-      # ./pinyin.nix
+
       ./programs/gnome-desktop.nix
       ./programs/vim.nix # editor
       ./programs/zsh.nix # shell
-      # ./programs/hyprland.nix # window manager
-      # ./programs/git.nix
+      ./programs/vscodium.nix # IDE
+
       ./services/avahi-mdns.nix
-      # ./services/wireguard-client.nix
       ./services/hydra.nix
       ./services/sshd.nix
+      # ./pinyin.nix
+      # ./programs/hyprland.nix # window manager
+      # ./programs/git.nix
+      # ./services/wireguard-client.nix
     ];
 
   networking.hostName = "t14";
@@ -150,6 +153,7 @@
     fzf
     mtr # network diagnostic tool
     file which tree
+    nix-index
 
     # hyprland-specific
     hyprland hyprpaper hyprshot
@@ -157,8 +161,6 @@
     fuzzel
     wofi
     kitty
-
-    vscode # nonfree
 
     just
 
@@ -183,7 +185,7 @@
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    "vscode"
+    # "vscode"
     "discord"
   ];
 

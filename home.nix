@@ -4,12 +4,6 @@
   home.username = "sshine";
   home.homeDirectory = "/home/sshine";
 
-  programs.vscode = {
-    enable = true;
-    extensions = with pkgs.vscode-extensions; [
-    ];
-  };
-
   programs.kitty = {
     enable = true;
     # theme = "Batman";

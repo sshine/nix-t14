@@ -15,6 +15,7 @@
         rust-lang.rust-analyzer
         serayuzgur.crates
         tamasfe.even-better-toml
+        mkhl.direnv
       ];
     })
   ];

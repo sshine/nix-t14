@@ -3,6 +3,21 @@
   services.udev = {
     # 69-probe-rs.rules
     extraRules = ''
+##### SALAE
+
+BUS!="usb", ACTION!="add", SUBSYSTEM!=="usb_device", GOTO="saleae_logic_rules_end"
+
+# Saleae Logic analyzer (USB Based)
+# Bus 006 Device 006: ID 0925:3881 Lakeview Research
+# Bus 001 Device 009: ID 21a9:1004 Product: Logic S/16, Manufacturer: Saleae LLC
+
+ATTR{idVendor}=="0925", ATTR{idProduct}=="3881", MODE="664", GROUP="plugdev"
+ATTR{idVendor}=="21a9", ATTR{idProduct}=="1004", MODE="664", GROUP="plugdev"
+
+LABEL="saleae_logic_rules_end"
+
+### OTHER STUFF
+
 # Copy this file to /etc/udev/rules.d/
 # If rules fail to reload automatically, you can refresh udev rules
 # with the command "udevadm control --reload"

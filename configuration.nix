@@ -52,7 +52,7 @@
       home = "/home/sshine";
       shell = pkgs.zsh;
       description = "Simon Shine";
-      extraGroups = [ "wheel" "video" "plugdev" ];
+      extraGroups = [ "wheel" "video" "plugdev" "dialout" ];
     };
   };
 
@@ -141,6 +141,7 @@
     discord # nonfree
 
     zed-editor # depends on flake input
+    helix
     just
 
     # recommended by https://nixos-and-flakes.thiscute.world/nixos-with-flakes/start-using-home-manager
@@ -182,6 +183,12 @@
     bottom
     brightnessctl
     dunst
+
+    minicom
+    usbutils
+
+    qemu
+    bat
   ];
 
   nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [

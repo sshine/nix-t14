@@ -6,9 +6,7 @@
     fontDir.enable = true;
     fontconfig.enable = true;
     enableGhostscriptFonts = true;
-    packages = with pkgs; [
-      (nerdfonts.override { fonts = [ "Meslo" "FiraCode" "DroidSansMono" ]; })
-
+    packages = with pkgs.nerd-fonts; [
       anonymousPro
       dejavu_fonts
       # emojione
@@ -25,7 +23,7 @@
       lmodern
       montserrat
       noto-fonts
-      noto-fonts-cjk
+      noto-fonts-cjk-sans
       noto-fonts-emoji
       noto-fonts-extra
       terminus_font

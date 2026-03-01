@@ -6,6 +6,9 @@
         # General
         eamodio.gitlens
         asvetliakov.vscode-neovim
+        skellock.just
+        # continue.continue
+        myriad-dreamin.tinymist
 
         # Nix
         bbenoist.nix

@@ -52,7 +52,7 @@
       gca = "git commit --amend";
       gcv = "git commit --verbose";
       gap = "git add -p";
-      gl = "git log";
+      gl = "git log --decorate=short --color | less -R";
       gpr = "git pull --rebase";
       gcp = "git cherry-pick";
     };

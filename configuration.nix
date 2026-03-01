@@ -1,29 +1,31 @@
 # Edit this configuration file to define what should be installed on
 # your system. Help is available in the configuration.nix(5) man page, on
 # https://search.nixos.org/options and in the NixOS manual (`nixos-help`).
-
-{ config, lib, pkgs, ... }:
- 
 {
-  imports =
-    [ ./hardware-configuration.nix
-      ./direnv.nix
-      ./udev.nix
-      ./fonts.nix
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
+  imports = [
+    ./hardware-configuration.nix
+    ./direnv.nix
+    ./udev.nix
 
-      ./programs/gnome-desktop.nix
-      ./programs/vim.nix # editor
-      ./programs/zsh.nix # shell
-      ./programs/vscodium.nix # IDE
+    ./programs/gnome-desktop.nix
+    ./programs/vim.nix # editor
+    ./programs/zsh.nix # shell
+    ./programs/vscodium.nix # IDE
 
-      ./services/avahi-mdns.nix
-      ./services/sshd.nix
-      # ./services/hydra.nix
-      # ./pinyin.nix
-      # ./programs/hyprland.nix # window manager
-      # ./programs/git.nix
-      # ./services/wireguard-client.nix
-    ];
+    ./services/avahi-mdns.nix
+    ./services/sshd.nix
+    ./services/tailscale.nix
+    # ./services/hydra.nix
+    # ./pinyin.nix
+    # ./programs/hyprland.nix # window manager
+    # ./programs/git.nix
+    # ./services/wireguard-client.nix
+  ];
 
   networking.hostName = "t14";
   networking.domain = "mechanicus.xyz";
@@ -38,10 +40,8 @@
 
   security.polkit.enable = true;
 
-  hardware.pulseaudio.enable = true;
-
   # Enable binfmt emulation of aarch64-linux.
-  boot.binfmt.emulatedSystems = [ "aarch64-linux" ];
+  boot.binfmt.emulatedSystems = ["aarch64-linux" "x86_64-windows"];
 
   users = {
     groups.plugdev = {};
@@ -52,7 +52,7 @@
       home = "/home/sshine";
       shell = pkgs.zsh;
       description = "Simon Shine";
-      extraGroups = [ "wheel" "video" "plugdev" "dialout" ];
+      extraGroups = ["wheel" "video" "plugdev" "dialout"];
     };
   };
 
@@ -61,7 +61,6 @@
     execWheelOnly = true;
     wheelNeedsPassword = false;
   };
-
 
   # networking.hostName = "nixos"; # Define your hostname.
   # Pick only one of the below networking options.
@@ -111,16 +110,20 @@
   # $ nix search wget
   environment.systemPackages = with pkgs; [
     vim # Do not forget to add an editor to edit configuration.nix! The Nano editor is also installed by default.
-    wget curl
+    wget
+    curl
     screen
     zsh
-    starship atuin
-    alacritty foot kitty
+    starship
+    atuin
+    alacritty
+    foot
+    kitty
     firefox
     gitFull
     signal-desktop
     direnv
-    grim  # screenshot
+    grim # screenshot
     slurp # screenshot
     wl-clipboard # wl-copy + wl-paste
     # hugo glurp btop iotop iftop strace ltrace lsof sysstat lm_sensors ethtool
@@ -128,15 +131,16 @@
     # usbutils # lsusb
     jq
 
+    typst
+
     # iperf3
-    dnsutils  # `dig` + `nslookup`
+    dnsutils # `dig` + `nslookup`
     doggo # alternative to `dig`
     ldns # replacement of `dig`, it provide the command `drill`
     aria2 # A lightweight multi-protocol & multi-source command-line download utility
     socat # replacement of openbsd-netcat
     nmap # A utility for network discovery and security auditing
-    ipcalc  # it is a calculator for the IPv4/v6 addresses
-
+    ipcalc # it is a calculator for the IPv4/v6 addresses
 
     discord # nonfree
 
@@ -147,17 +151,26 @@
     # recommended by https://nixos-and-flakes.thiscute.world/nixos-with-flakes/start-using-home-manager
     nnn # terminal file manager
     gnused
-    zip xz unzip p7zip zstd gnutar
+    zip
+    xz
+    unzip
+    p7zip
+    zstd
+    gnutar
     gnupg
     ripgrep
     eza
     fzf
     mtr # network diagnostic tool
-    file which tree
+    file
+    which
+    tree
     nix-index
 
     # hyprland-specific
-    hyprland hyprpaper hyprshot
+    hyprland
+    hyprpaper
+    hyprshot
     waybar
     fuzzel
     wofi
@@ -191,14 +204,12 @@
     bat
   ];
 
-  nixpkgs.config.allowUnfreePredicate = pkg: builtins.elem (lib.getName pkg) [
-    # "vscode"
-    "discord"
-  ];
+  nixpkgs.config.allowUnfreePredicate = pkg:
+    builtins.elem (lib.getName pkg) [
+      # "vscode"
+      "discord"
+    ];
 
-
-  nix.settings.experimental-features = [ "nix-command" "flakes" ];
+  nix.settings.experimental-features = ["nix-command" "flakes"];
   system.stateVersion = "24.05"; # Did you read the comment?
-
 }
-

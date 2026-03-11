@@ -3,39 +3,34 @@
 
   inputs = {
     nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
-    home-manager.url = "github:nix-community/home-manager";
-    home-manager.inputs.nixpkgs.follows = "nixpkgs";
 
-    sops-nix.url = "github:Mic92/sops-nix";
-    sops-nix.inputs.nixpkgs.follows = "nixpkgs";
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    flake-parts.inputs.nixpkgs-lib.follows = "nixpkgs";
+
+    import-tree.url = "github:vic/import-tree";
+
+    nixvim.url = "github:nix-community/nixvim";
+    nixvim.inputs.nixpkgs.follows = "nixpkgs";
+
+    claudebox.url = "github:numtide/claudebox";
+    claudebox.inputs.nixpkgs.follows = "nixpkgs";
+
+    hjem.url = "github:feel-co/hjem";
+    hjem.inputs.nixpkgs.follows = "nixpkgs";
+
+    treefmt-nix.url = "github:numtide/treefmt-nix";
+    treefmt-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    lefthook-nix.url = "github:sudosubin/lefthook.nix";
+    lefthook-nix.inputs.nixpkgs.follows = "nixpkgs";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    sops-nix,
-    home-manager,
-    ...
-  } @ inputs: {
-    nixosConfigurations = {
-      t14 = nixpkgs.lib.nixosSystem {
-        system = "x86_64-linux";
-        specialArgs = {inherit inputs;};
-        modules = [
-          ./configuration.nix
-
-          # ./ci-builder-laminar.nix
-          # ./ci-operator.nix
-          sops-nix.nixosModules.sops
-
-          home-manager.nixosModules.home-manager
-          {
-            home-manager.useGlobalPkgs = true;
-            home-manager.useUserPackages = false;
-            home-manager.users.sshine = import ./home.nix;
-          }
-        ];
-      };
-    };
-  };
+  outputs =
+    {
+      self,
+      flake-parts,
+      import-tree,
+      ...
+    }@inputs:
+    flake-parts.lib.mkFlake { inherit inputs; } (import-tree ./modules);
 }

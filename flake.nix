@@ -23,6 +23,9 @@
 
     lefthook-nix.url = "github:sudosubin/lefthook.nix";
     lefthook-nix.inputs.nixpkgs.follows = "nixpkgs";
+
+    walltime-rs.url = "github:sshine/walltime-rs";
+    walltime-rs.inputs.nixpkgs.follows = "nixpkgs";
   };
 
   outputs =

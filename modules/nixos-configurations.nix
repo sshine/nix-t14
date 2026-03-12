@@ -22,6 +22,7 @@
       config.flake.nixosModules.tailscale
       config.flake.nixosModules.gitconfig
       config.flake.nixosModules.hjem
+      config.flake.nixosModules.walltime
       { system.stateVersion = "24.05"; }
     ];
   };

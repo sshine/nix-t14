@@ -90,11 +90,12 @@
         nixos-shell
       ];
 
-      nixpkgs.config.allowUnfreePredicate =
-        pkg:
-        builtins.elem (lib.getName pkg) [
-          "discord"
-          "claude-code"
-        ];
+      nixpkgs.config.allowUnfree = true;
+      #nixpkgs.config.allowUnfreePredicate =
+      #  pkg:
+      #  builtins.elem (lib.getName pkg) [
+      #    "discord"
+      #    "claude-code"
+      #  ];
     };
 }

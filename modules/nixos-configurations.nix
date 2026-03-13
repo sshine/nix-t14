@@ -5,11 +5,12 @@
   flake.nixosConfigurations.t14 = inputs.nixpkgs.lib.nixosSystem {
     system = "x86_64-linux";
     modules = [
-      ../hosts/t14/hardware-configuration.nix
+      ../hosts/t14-hardware.nix
       config.flake.nixosModules.boot
       config.flake.nixosModules.networking
       config.flake.nixosModules.user-sshine
-      config.flake.nixosModules.system-packages
+      config.flake.nixosModules.system
+      config.flake.nixosModules.packages
       config.flake.nixosModules.zsh
       config.flake.nixosModules.nixvim
       config.flake.nixosModules.vscodium
@@ -23,7 +24,6 @@
       config.flake.nixosModules.gitconfig
       config.flake.nixosModules.hjem
       config.flake.nixosModules.walltime
-      { system.stateVersion = "24.05"; }
     ];
   };
 }

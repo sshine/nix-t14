@@ -1,28 +1,23 @@
 { inputs, ... }:
 {
-  flake.nixosModules.system-packages =
+  flake.nixosModules.packages =
     { pkgs, lib, ... }:
     {
       environment.systemPackages = with pkgs; [
-        wget
-        curl
         screen
-        zsh
-        starship
         atuin
         alacritty
-        foot
         kitty
+
         firefox
-        gitFull
         signal-desktop
         simplex-chat-desktop
+        discord
+
         direnv
         grim
         slurp
         wl-clipboard
-        jq
-        fd
 
         typst
 
@@ -34,12 +29,15 @@
         nmap
         ipcalc
 
-        discord
-
         zed-editor
-        helix
         just
 
+        jq
+        fd
+        wget
+        curl
+        gitFull
+        zsh
         nnn
         gnused
         zip
@@ -65,6 +63,7 @@
         fuzzel
         wofi
 
+        rustup
         cargo
         cargo-generate
         rustc
@@ -88,9 +87,7 @@
 
         qemu
         bat
-        claude-code
         nixos-shell
-        inputs.claudebox.packages.x86_64-linux.claudebox
       ];
 
       nixpkgs.config.allowUnfreePredicate =
@@ -99,16 +96,5 @@
           "discord"
           "claude-code"
         ];
-
-      nix.settings = {
-        experimental-features = [
-          "nix-command"
-          "flakes"
-        ];
-        trusted-users = [
-          "root"
-          "sshine"
-        ];
-      };
     };
 }

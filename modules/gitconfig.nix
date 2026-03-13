@@ -8,6 +8,7 @@
         config = {
           user.name = "Simon Shine";
           user.email = "simon@simonshine.dk";
+          init.defaultBranch = "main";
           push.autoSetupRemote = true;
         };
       };

@@ -24,6 +24,7 @@
       config.flake.nixosModules.gitconfig
       config.flake.nixosModules.hjem
       config.flake.nixosModules.walltime
+      config.flake.nixosModules.trix
     ];
   };
 }

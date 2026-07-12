@@ -37,6 +37,7 @@
         wget
         curl
         gitFull
+        github-cli
         zsh
         nnn
         gnused
@@ -88,6 +89,8 @@
         qemu
         bat
         nixos-shell
+        passage
+        age
       ];
 
       nixpkgs.config.allowUnfree = true;

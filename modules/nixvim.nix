@@ -19,6 +19,7 @@
         enable = true;
         defaultEditor = true;
         vimAlias = true;
+        nixpkgs.source = inputs.nixpkgs;
 
         globals.mapleader = " ";
 
@@ -40,6 +41,7 @@
           showmatch = true;
         };
 
+        extraPlugins = [ pkgs.vimPlugins.plenary-nvim ];
         plugins.telescope = {
           enable = true;
           keymaps = {

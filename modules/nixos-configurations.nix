@@ -25,6 +25,7 @@
       config.flake.nixosModules.hjem
       config.flake.nixosModules.walltime
       config.flake.nixosModules.trix
+      config.flake.nixosModules.k3s
     ];
   };
 }

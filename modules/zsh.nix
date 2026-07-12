@@ -47,6 +47,8 @@
           gl = "git log --decorate=short --color | less -R";
           gpr = "git pull --rebase";
           gcp = "git cherry-pick";
+
+          k = "kubectl";
         };
 
         promptInit = ''
@@ -61,7 +63,15 @@
             fi
           }
 
-          prompt='[%(!.%F{red}.%F{green})%m%f:%F{blue}%~%f]$(git_branch_name) %(!.%F{red}#%f.$) '
+          function kube_context() {
+            local ctx
+            ctx=$(kubectl config current-context 2>/dev/null) || return
+            local ns
+            ns=$(kubectl config view -o jsonpath="{.contexts[?(@.name==\"$ctx\")].context.namespace}" 2>/dev/null)
+            echo -n " [%F{magenta}$ctx%f:%F{magenta}''${ns:-default}%f]"
+          }
+
+          prompt='[%(!.%F{red}.%F{green})%m%f:%F{blue}%~%f]$(git_branch_name)$(kube_context) %(!.%F{red}#%f.$) '
 
           setopt prompt_cr
           setopt prompt_sp

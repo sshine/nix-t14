@@ -26,6 +26,7 @@
       config.flake.nixosModules.walltime
       config.flake.nixosModules.trix
       config.flake.nixosModules.k3s
+      config.flake.nixosModules.rust-overlay
     ];
   };
 }

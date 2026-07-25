@@ -64,15 +64,8 @@
         fuzzel
         wofi
 
-        rustup
-        cargo
-        cargo-generate
-        rustc
-        rust-analyzer
-        rustfmt
         gcc
         pkg-config
-        cargo-watch
 
         parted
         gptfdisk

@@ -42,12 +42,16 @@
     trix.url = "github:aanderse/trix";
     trix.inputs.nixpkgs.follows = "nixpkgs";
 
+    rust-overlay.url = "github:oxalica/rust-overlay";
+    rust-overlay.inputs.nixpkgs.follows = "nixpkgs";
+
     walltime-rs.url = "github:sshine/walltime-rs";
     walltime-rs.inputs.nixpkgs.follows = "nixpkgs";
     walltime-rs.inputs.flake-parts.follows = "flake-parts";
     walltime-rs.inputs.import-tree.follows = "import-tree";
     walltime-rs.inputs.lefthook-nix.follows = "lefthook-nix";
     walltime-rs.inputs.treefmt-nix.follows = "treefmt-nix";
+    walltime-rs.inputs.rust-overlay.follows = "rust-overlay";
   };
 
   outputs =

@@ -8,11 +8,13 @@
         atuin
         alacritty
         kitty
+        herdr
 
         firefox
         signal-desktop
         simplex-chat-desktop
         discord
+        spotify
 
         direnv
         grim
@@ -56,11 +58,13 @@
         which
         tree
         nix-index
+        htop
+        killall
 
-        hyprland
-        hyprpaper
-        hyprshot
-        waybar
+        # hyprland
+        # hyprpaper
+        # hyprshot
+        # waybar
         fuzzel
         wofi
 

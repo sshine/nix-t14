@@ -7,6 +7,7 @@
     modules = [
       ../hosts/t14-hardware.nix
       config.flake.nixosModules.boot
+      config.flake.nixosModules.swap
       config.flake.nixosModules.networking
       config.flake.nixosModules.user-sshine
       config.flake.nixosModules.system

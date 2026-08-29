@@ -98,6 +98,11 @@
           bindkey '^U' kill-whole-line
           bindkey '^Y' yank
 
+          # backspace in viins is vi-backward-delete-char, which saves the deleted
+          # text to $CUTBUFFER (vi's unnamed register) and so eats what ^U killed
+          bindkey '^?' backward-delete-char
+          bindkey '^H' backward-delete-char
+
           export TERM=xterm-256color
 
           eval "$(atuin init zsh --disable-up-arrow)"

@@ -1,0 +1,76 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+root="${CARGO_GC_ROOT:-$HOME/Projects}"
+min_mb="${CARGO_GC_MIN_MB:-100}"
+days="${CARGO_GC_DAYS:-7}"
+dry_run=false
+
+usage() {
+  cat <<EOF
+usage: cargo-gc [-n] [--root DIR] [--min-mb N] [--days N]
+
+Runs 'cargo clean' on Cargo target directories under DIR that are larger
+than --min-mb and have not been built in --days days.
+
+  -n, --dry-run   report what would be cleaned, delete nothing
+      --root DIR  where to search (default: \$HOME/Projects)
+      --min-mb N  size floor in MiB (default: 100)
+      --days N    minimum idle age in days (default: 7)
+EOF
+}
+
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    -n | --dry-run) dry_run=true; shift ;;
+    --root) root="$2"; shift 2 ;;
+    --min-mb) min_mb="$2"; shift 2 ;;
+    --days) days="$2"; shift 2 ;;
+    -h | --help) usage; exit 0 ;;
+    *) usage >&2; exit 2 ;;
+  esac
+done
+
+if ! "$dry_run" && ! command -v cargo >/dev/null 2>&1; then
+  echo "cargo-gc: cargo is not on PATH" >&2
+  exit 1
+fi
+
+# bfs stands in for find on this system and accepts only ISO 8601 here,
+# which GNU find also understands.
+cutoff=$(date -d "$days days ago" -Iseconds)
+
+total_mb=0
+cleaned=0
+failed=0
+
+while IFS= read -r -d '' target; do
+  project="${target%/target}"
+
+  # Anything else that happens to be called 'target' is not ours to delete.
+  [[ -f "$project/Cargo.toml" ]] || continue
+
+  # Every build rewrites target/<profile>/.cargo-lock, so two levels are
+  # enough to date the last one without walking tens of gigabytes.
+  [[ -z "$(find "$target" -maxdepth 2 -newermt "$cutoff" -print -quit)" ]] || continue
+
+  size_mb=$(du -sm "$target" | cut -f1)
+  ((size_mb >= min_mb)) || continue
+
+  if "$dry_run"; then
+    printf '%7s MiB  would clean  %s\n' "$size_mb" "$project"
+    total_mb=$((total_mb + size_mb))
+    cleaned=$((cleaned + 1))
+  elif (cd "$project" && cargo clean >/dev/null 2>&1); then
+    printf '%7s MiB  cleaned      %s\n' "$size_mb" "$project"
+    total_mb=$((total_mb + size_mb))
+    cleaned=$((cleaned + 1))
+  else
+    printf '%7s MiB  cargo clean failed, left alone  %s\n' "$size_mb" "$project" >&2
+    failed=$((failed + 1))
+  fi
+done < <(find "$root" -type d -name target -prune -print0)
+
+verb=$("$dry_run" && echo reclaimable || echo reclaimed)
+printf '\ncargo-gc: %s MiB %s across %s project(s)' "$total_mb" "$verb" "$cleaned"
+((failed == 0)) && printf '\n' || printf ', %s failed\n' "$failed"

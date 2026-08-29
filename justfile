@@ -7,5 +7,8 @@ boot:
 lint:
   exec env TERM=dumb lefthook run pre-commit
 
-gc:
-  sudo nix-collect-garbage -d
+# pass --dry-run to report what each stage would reclaim, without deleting
+gc *ARGS:
+  ./scripts/cargo-gc {{ ARGS }}
+  nix-collect-garbage -d {{ ARGS }}
+  sudo nix-collect-garbage -d {{ ARGS }}

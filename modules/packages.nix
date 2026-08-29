@@ -9,12 +9,14 @@
         alacritty
         kitty
         herdr
+        ffmpeg
 
         firefox
         signal-desktop
         simplex-chat-desktop
         discord
         spotify
+        mpv
 
         direnv
         grim

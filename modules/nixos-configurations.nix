@@ -11,6 +11,7 @@
       config.flake.nixosModules.user-sshine
       config.flake.nixosModules.system
       config.flake.nixosModules.packages
+      config.flake.nixosModules.flake-packages
       config.flake.nixosModules.zsh
       config.flake.nixosModules.nixvim
       config.flake.nixosModules.vscodium
@@ -23,7 +24,6 @@
       config.flake.nixosModules.tailscale
       config.flake.nixosModules.gitconfig
       config.flake.nixosModules.hjem
-      config.flake.nixosModules.walltime
       config.flake.nixosModules.trix
       config.flake.nixosModules.k3s
       config.flake.nixosModules.rust-overlay

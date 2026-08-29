@@ -52,6 +52,13 @@
     walltime-rs.inputs.lefthook-nix.follows = "lefthook-nix";
     walltime-rs.inputs.treefmt-nix.follows = "treefmt-nix";
     walltime-rs.inputs.rust-overlay.follows = "rust-overlay";
+
+    hashpinner.url = "github:sshine/hashpinner";
+    hashpinner.inputs.nixpkgs.follows = "nixpkgs";
+    hashpinner.inputs.flake-parts.follows = "flake-parts";
+    hashpinner.inputs.import-tree.follows = "import-tree";
+    hashpinner.inputs.treefmt-nix.follows = "treefmt-nix";
+    hashpinner.inputs.rust-overlay.follows = "rust-overlay";
   };
 
   outputs =

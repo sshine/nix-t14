@@ -23,7 +23,6 @@
         epiphany
         geary
         gedit
-        gnome-photos
         gnome-tour
         yelp
         gnome-music

@@ -8,7 +8,7 @@
         inputs.hashpinner.overlays.default
       ];
       environment.systemPackages = [
-        pkgs.walltime-cli
+        pkgs.walltime
         pkgs.hashpinner
       ];
     };

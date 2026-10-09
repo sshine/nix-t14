@@ -25,7 +25,9 @@
     bubblebox.url = "github:nix-tools/bubblebox";
     bubblebox.inputs.nixpkgs.follows = "nixpkgs";
     bubblebox.inputs.flake-parts.follows = "flake-parts";
-    bubblebox.inputs.import-tree.follows = "import-tree";
+    # bubblebox merges `import-tree ./nix // { systems = ...; }`, which import-tree
+    # #40 broke by returning a module lambda. Held back until bubblebox adapts.
+    bubblebox.inputs.import-tree.url = "github:denful/import-tree/4ebb10ae17d5f1ad366e7aef5b92cb8eecf24f69";
     bubblebox.inputs.treefmt-nix.follows = "treefmt-nix";
     bubblebox.inputs.hermes-agent.inputs.nixpkgs.follows = "nixpkgs";
     bubblebox.inputs.hermes-agent.inputs.flake-parts.follows = "flake-parts";
@@ -49,7 +51,6 @@
     walltime-rs.inputs.nixpkgs.follows = "nixpkgs";
     walltime-rs.inputs.flake-parts.follows = "flake-parts";
     walltime-rs.inputs.import-tree.follows = "import-tree";
-    walltime-rs.inputs.lefthook-nix.follows = "lefthook-nix";
     walltime-rs.inputs.treefmt-nix.follows = "treefmt-nix";
     walltime-rs.inputs.rust-overlay.follows = "rust-overlay";
 

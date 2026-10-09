@@ -13,6 +13,12 @@
         files.".config/kitty/kitty.conf".text = ''
           font_family Meslo
           font_size 14
+
+          # lets debug-on-error read the failed command's output back off the screen
+          allow_remote_control yes
+
+          # debug-on-error can only hand claude what kitty still remembers
+          scrollback_lines 20000
         '';
 
         files.".config/fuzzel/fuzzel.ini".text = lib.generators.toINI { } {

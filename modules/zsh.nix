@@ -106,6 +106,8 @@
           export TERM=xterm-256color
 
           eval "$(atuin init zsh --disable-up-arrow)"
+
+          ${builtins.readFile ../scripts/debug-on-error.zsh}
         '';
       };
     };

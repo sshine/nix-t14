@@ -28,6 +28,7 @@
       config.flake.nixosModules.trix
       config.flake.nixosModules.k3s
       config.flake.nixosModules.rust-overlay
+      config.flake.nixosModules.flat-remix-gtk
       config.flake.nixosModules.docker-rootless
     ];
   };

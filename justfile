@@ -1,3 +1,6 @@
+_list:
+  @just --list
+
 switch:
   sudo nixos-rebuild switch --flake .
 

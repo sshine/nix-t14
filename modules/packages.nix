@@ -12,6 +12,7 @@
         ffmpeg
 
         firefox
+        thunderbird
         signal-desktop
         simplex-chat-desktop
         discord
@@ -81,6 +82,7 @@
         bottom
         brightnessctl
         dunst
+        cloc
 
         minicom
         usbutils

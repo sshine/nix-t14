@@ -31,6 +31,7 @@
       config.flake.nixosModules.flat-remix-gtk
       config.flake.nixosModules.docker-rootless
       config.flake.nixosModules.envfs
+      config.flake.nixosModules.speech2text
     ];
   };
 }

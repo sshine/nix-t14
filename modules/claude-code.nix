@@ -16,6 +16,7 @@
         pkgs.opencode
 
         llm-pkgs.rtk
+        llm-pkgs.codex
         # llm-pkgs.zeroclaw
         # llm-pkgs.pi
 

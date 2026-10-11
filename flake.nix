@@ -60,6 +60,13 @@
     hashpinner.inputs.import-tree.follows = "import-tree";
     hashpinner.inputs.treefmt-nix.follows = "treefmt-nix";
     hashpinner.inputs.rust-overlay.follows = "rust-overlay";
+
+    irciii.url = "github:sshine/irciii";
+    irciii.inputs.nixpkgs.follows = "nixpkgs";
+    irciii.inputs.flake-parts.follows = "flake-parts";
+    irciii.inputs.import-tree.follows = "import-tree";
+    irciii.inputs.treefmt-nix.follows = "treefmt-nix";
+    irciii.inputs.rust-overlay.follows = "rust-overlay";
   };
 
   outputs =
